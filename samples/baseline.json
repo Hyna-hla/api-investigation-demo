@@ -1,0 +1,25 @@
+{
+  "request": {
+    "method": "POST",
+    "path": "/api/v2/checkout",
+    "headers": { "content-type": "application/json", "authorization": "Bearer ***" },
+    "body": { "user_id": 10086, "sku_list": [{ "sku": "A-100", "qty": 2 }], "coupon": "NEW10" }
+  },
+  "response": {
+    "status": 200,
+    "latency_ms": 120,
+    "body": {
+      "code": 0,
+      "message": "ok",
+      "data": {
+        "orderId": "ORD-20260909-0001",
+        "user": { "id": 10086, "name": "Zhang San", "age": 28, "email": "zs@example.com", "vip": true },
+        "items": [
+          { "sku": "A-100", "qty": 2, "price": 49.9, "subtotal": 99.8 }
+        ],
+        "discount": 9.98,
+        "total": 89.82
+      }
+    }
+  }
+}

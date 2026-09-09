@@ -1,0 +1,106 @@
+[
+  {
+    "path": "$.status",
+    "kind": "bad_http_status",
+    "expected": "2xx",
+    "actual": 500,
+    "severity": "CRITICAL",
+    "reason": "HTTP 状态码 500 非 2xx，请求未成功"
+  },
+  {
+    "path": "$.body.code",
+    "kind": "biz_error",
+    "expected": 0,
+    "actual": 5001,
+    "severity": "CRITICAL",
+    "reason": "业务错误码为 5001(非 0)，接口返回业务失败"
+  },
+  {
+    "path": "$.body.data.orderId",
+    "kind": "null_unexpected",
+    "expected": "ORD-20260909-0001",
+    "actual": null,
+    "severity": "HIGH",
+    "reason": "期望有值，实际返回 null"
+  },
+  {
+    "path": "$.body.data.user.age",
+    "kind": "type_mismatch",
+    "expected": 28,
+    "actual": "28",
+    "severity": "HIGH",
+    "reason": "期望类型 int，实际 str"
+  },
+  {
+    "path": "$.body.data.user.email",
+    "kind": "missing",
+    "expected": "zs@example.com",
+    "actual": null,
+    "severity": "HIGH",
+    "reason": "期望中存在但响应缺失该字段"
+  },
+  {
+    "path": "$.latency_ms",
+    "kind": "value_changed",
+    "expected": 120,
+    "actual": 1280,
+    "severity": "MEDIUM",
+    "reason": "字段取值与期望不一致"
+  },
+  {
+    "path": "$.body.data.items",
+    "kind": "length_changed",
+    "expected": 1,
+    "actual": 2,
+    "severity": "MEDIUM",
+    "reason": "数组长度由 1 变为 2"
+  },
+  {
+    "path": "$.body.data.items[0].price",
+    "kind": "value_changed",
+    "expected": 49.9,
+    "actual": 59.9,
+    "severity": "MEDIUM",
+    "reason": "数值偏离期望值，超出容差"
+  },
+  {
+    "path": "$.body.data.items[0].subtotal",
+    "kind": "value_changed",
+    "expected": 99.8,
+    "actual": 119.8,
+    "severity": "MEDIUM",
+    "reason": "数值偏离期望值，超出容差"
+  },
+  {
+    "path": "$.body.data.discount",
+    "kind": "value_changed",
+    "expected": 9.98,
+    "actual": 0,
+    "severity": "MEDIUM",
+    "reason": "数值偏离期望值，超出容差"
+  },
+  {
+    "path": "$.body.data.total",
+    "kind": "value_changed",
+    "expected": 89.82,
+    "actual": 138.8,
+    "severity": "MEDIUM",
+    "reason": "数值偏离期望值，超出容差"
+  },
+  {
+    "path": "$.latency_ms",
+    "kind": "slow",
+    "expected": "<= 500",
+    "actual": 1280,
+    "severity": "MEDIUM",
+    "reason": "耗时 1280ms 超过阈值 500ms"
+  },
+  {
+    "path": "$.body.debug",
+    "kind": "extra",
+    "expected": null,
+    "actual": "stacktrace exposed at OrderService.calc",
+    "severity": "LOW",
+    "reason": "响应多出未约定字段(确认是否需要)"
+  }
+]
